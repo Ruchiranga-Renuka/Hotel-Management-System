@@ -40,6 +40,7 @@ public class BookingService {
     }
 
     @Transactional
+    @SuppressWarnings("null")
     public BookingDto createBooking(Long userId, BookingRequest request) {
         Optional<User> userOptional = userRepository.findById(userId);
         Optional<Room> roomOptional = roomRepository.findById(request.getRoomId());
@@ -69,6 +70,7 @@ public class BookingService {
         return toDto(bookingRepository.save(booking));
     }
 
+    @SuppressWarnings("null")
     public boolean cancelBooking(Long bookingId, Long userId) {
         Optional<Booking> bookingOptional = bookingRepository.findById(bookingId);
         if (bookingOptional.isEmpty()) {

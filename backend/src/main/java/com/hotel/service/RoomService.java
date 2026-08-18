@@ -26,16 +26,19 @@ public class RoomService {
         return roomRepository.findAll().stream().map(this::toDto).collect(Collectors.toList());
     }
 
+    @SuppressWarnings("null")
     public RoomDto getRoomById(Long id) {
         return roomRepository.findById(id).map(this::toDto).orElse(null);
     }
 
+    @SuppressWarnings("null")
     public RoomDto createRoom(Room room) {
         return toDto(roomRepository.save(room));
     }
 
+    @SuppressWarnings("null")
     public RoomDto updateRoom(Long id, Room updatedRoom) {
-        return roomRepository.findById(id)
+        return roomRepository.findById((long) id)
                 .map(room -> {
                     room.setRoomNumber(updatedRoom.getRoomNumber());
                     room.setType(updatedRoom.getType());
@@ -48,6 +51,7 @@ public class RoomService {
                 .orElse(null);
     }
 
+    @SuppressWarnings("null")
     public void deleteRoom(Long id) {
         roomRepository.deleteById(id);
     }
